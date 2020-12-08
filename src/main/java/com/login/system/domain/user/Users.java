@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.login.system.dto.UserDTO;
+
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,6 +17,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@Builder
 public class Users {
 	
 	@Id
@@ -25,5 +29,12 @@ public class Users {
 	private String password;
 	@Column(nullable = false)
 	private String userName;
+	
+	public UserDTO toDTO() {
+		return UserDTO.builder()
+					.index(index)
+					.userName(userName)
+					.build();
+	}
 	
 }
